@@ -1,0 +1,7 @@
+*.exe
+*.test
+*.prof
+*.swp
+logs/*
+.DS_Store
+.idea/*
