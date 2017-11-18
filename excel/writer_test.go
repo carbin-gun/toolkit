@@ -14,6 +14,14 @@ func TestExecel(t *testing.T) {
 	}
 	sheet.AddHeader([]string{"姓名", "年龄", "邮箱"})
 	sheet.AddRowData([]interface{}{"邓正超", 28, "cilendeng@gmail.com"})
+
+	sheet2, err := excel.AddSheet("测试sheet页2")
+	if err != nil {
+		log.Fatal(err)
+	}
+	sheet2.AddHeaderColumns("姓名", "年龄", "邮箱")
+	sheet2.AddRowData([]interface{}{"邓正超", 28, "cilendeng@gmail.com"})
+
 	target, err := os.Create("hello.xlsx")
 	if err != nil {
 		log.Fatal(err)
@@ -118,6 +126,9 @@ func TestAddExcelBySteps(t *testing.T) {
 		Email: "carbin-gun@gmail.com",
 	}
 	row2.Data(data)
+
+	row3 := sheet.AddRow()
+	row3.Cells("carbin-gun-2333", 21, "999@111.com")
 	target, err := os.Create("hello4.xlsx")
 	if err != nil {
 		log.Fatal(err)

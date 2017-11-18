@@ -126,6 +126,11 @@ func (s *Sheet) AddHeader(headers []string) *Sheet {
 	return s
 }
 
+//AddHeaderColumns , to add a row of header
+func (s *Sheet) AddHeaderColumns(headers ...string) *Sheet {
+	return s.AddHeader(headers)
+}
+
 //AddRowData ,add one row,each cell value is the correspoinding element of the input data slice
 func (s *Sheet) AddRowData(data []interface{}) {
 	r := s.AddRow()
@@ -232,6 +237,14 @@ func (r *Row) Data(item interface{}) {
 //Cell add a new cell
 func (r *Row) Cell(data interface{}) *Row {
 	r.addCellByReflect(reflect.ValueOf(data))
+	return r
+}
+
+//Cells to add a couple of cells ,and set the value
+func (r *Row) Cells(data ...interface{}) *Row {
+	for _, item := range data {
+		r.addCellByReflect(reflect.ValueOf(item))
+	}
 	return r
 }
 
